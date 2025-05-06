@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project demonstrates a **scalable and dynamic data ingestion pipeline** using **Azure Data Factory (ADF)** to retrieve multiple datasets from a public GitHub repository and store them into a hierarchical **Azure Data Lake Gen2** storage account.
+This project demonstrates a **scalable and dynamic data ingestion pipeline** using **Azure Data Factory (ADF)** to retrieve multiple datasets from GitHub repository and storing them into **Azure Data Lake** storage account.
 
 It is designed using **parameterization** and **control flow** activities like `ForEach`, `Web Activity`, and `Set Variable`, following best practices for building **reusable, dynamic ingestion solutions**.
 
@@ -23,8 +23,6 @@ It is designed using **parameterization** and **control flow** activities like `
 ## Architecture
 
 ### Visual Representation
-
-![image](https://github.com/user-attachments/assets/ee6d4fa9-f49f-4f3c-86a8-cf95c8b6740e)
 
 # ✅ Azure Data Factory: Dynamic GitHub to Data Lake Ingestion Pipeline
 
