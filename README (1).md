@@ -1,11 +1,11 @@
 
-# 📊 Netflix Data Engineering Pipeline on Azure
+# Netflix Data Engineering Pipeline on Azure
 
 This project demonstrates how to build an end-to-end data ingestion and processing pipeline using Microsoft Azure services. It ingests Netflix dataset CSVs from GitHub and processes them into a layered Delta Lake architecture using Azure Data Factory, Azure Data Lake Storage Gen2, and Azure Databricks with Autoloader.
 
 ---
 
-## 💡 Project Overview
+## Project Overview
 
 This pipeline is designed to:
 
@@ -17,7 +17,7 @@ This pipeline is designed to:
 
 ---
 
-## 🔧 Technologies Used
+## Technologies Used
 
 - Azure Resource Group
 - Azure Data Lake Storage Gen2
@@ -29,7 +29,7 @@ This pipeline is designed to:
 
 ---
 
-## 🗂️ Architecture Overview
+## Architecture Overview
 
 ```
 GitHub Repo (CSV Files)
@@ -48,7 +48,7 @@ Azure Databricks Autoloader
 
 ---
 
-## 🛠️ Step-by-Step Setup
+## Step-by-Step Setup
 
 ### 1. Azure Setup
 
@@ -99,7 +99,7 @@ df.writeStream  .option("checkpointLocation", checkpoint_location)  .trigger(pro
 
 ---
 
-## 📁 Folder Structure
+## Folder Structure
 
 ```
 netflix-data-pipeline-azure/
@@ -118,7 +118,7 @@ netflix-data-pipeline-azure/
 
 ---
 
-## 🧠 Key Learnings
+## Key Learnings
 
 - Cloud-native data pipelines with ADF and Databricks
 - Parameterized and dynamic data ingestion
@@ -128,12 +128,12 @@ netflix-data-pipeline-azure/
 
 ---
 
-## 🏁 Final Result
+## Final Result
 
 A scalable Azure-based data pipeline capable of automatically ingesting, storing, and transforming data from external sources, following best practices for modern data engineering.
 
 ---
 
-## 📬 Contact
+## Contact
 
 Built by [Your Name]. Feel free to connect with me on [LinkedIn] or check out more of my work on [GitHub].
