@@ -16,6 +16,8 @@ The pipeline leverages **parameterization**, **Web Activity-based validation**, 
       - Writes files to structured folders in Azure Data LakeAzure Data Factory
 - Pipeline control using Web Activity and Set Variable
 - Modular, scalable ETL architecture based on Medallion principles (Raw → Bronze → Silver → Gold)
+  
+![image](https://github.com/user-attachments/assets/e5f63066-020c-4a38-8571-796d9c0479b0)
 
 ---
 
