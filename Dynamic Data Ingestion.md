@@ -1,11 +1,8 @@
+##  Setup Steps
 
----
+### Create Linked Services
 
-## 🔧 Setup Steps
-
-### 1️⃣ Create Linked Services
-
-#### 🔹 HTTP Linked Service (GitHub)
+#### HTTP Linked Service (GitHub)
 - Go to **Manage** tab > **Linked Services** > **+ New**
 - Choose **HTTP**
 - Set:
@@ -14,7 +11,7 @@
   - **Authentication**: Anonymous (for public repos)
 - Click **Create**
 
-#### 🔹 Azure Data Lake Gen2 Linked Service
+#### Azure Data Lake Gen2 Linked Service
 - Go to **Linked Services** > **+ New**
 - Choose **Azure Data Lake Storage Gen2**
 - Set:
@@ -24,7 +21,7 @@
 
 ---
 
-### 2️⃣ Create Pipeline with Parameters
+### Create Pipeline with Parameters
 
 - Create two parameters in your pipeline:
   - `folder_name`
@@ -32,9 +29,9 @@
 
 ---
 
-### 3️⃣ Set Up Datasets
+### Set Up Datasets
 
-#### 🔹 HTTP Dataset (GitHub)
+#### HTTP Dataset (GitHub)
 - Linked Service: `GitHub_LinkedService`
 - Relative URL: dynamic
   - Use:
@@ -42,7 +39,7 @@
     @concat('<user>/<repo>/main/', pipeline().parameters.folder_name, '/', pipeline().parameters.file_name)
     ```
 
-#### 🔹 Azure Data Lake Dataset
+#### Azure Data Lake Dataset
 - Linked Service: `DataLake_LinkedService`
 - File path: dynamic
   - Use:
@@ -52,7 +49,7 @@
 
 ---
 
-### 4️⃣ Create a ForEach Activity
+### Create a ForEach Activity
 
 - Input: an array of JSON like this:
 
@@ -71,7 +68,7 @@
 
 ---
 
-## 🧠 Summary
+## Summary
 
 | Step | Purpose |
 |------|---------|
@@ -83,7 +80,7 @@
 
 ---
 
-## ✅ Outcome
+## Outcome
 
 A fully reusable and scalable ADF pipeline that:
 - Connects to GitHub without hardcoding file paths
@@ -92,7 +89,7 @@ A fully reusable and scalable ADF pipeline that:
 
 ---
 
-## 🏗️ Folder Structure
+## Folder Structure
 
 ```
 adf-github-ingestion/
