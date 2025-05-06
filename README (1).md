@@ -32,18 +32,20 @@ This pipeline is designed to:
 ## Architecture Overview
 
 ```
-GitHub Repo (CSV Files)
-        ↓
-Azure Data Factory (ADF)
-  - Parameterized pipeline
-  - HTTP source & ForEach loop
-        ↓
-Azure Data Lake Gen2
-  - Containers: raw, bronze, silver, gold
-        ↓
-Azure Databricks Autoloader
-  - Streams from raw to bronze
-  - Transforms to silver and gold
+├── adf/                                  # Azure Data Factory resources
+│   ├── pipelines/                        # Pipeline definitions
+│   ├── datasets/                         # Dataset definitions
+│   └── linkedServices/                   # Linked service configurations
+├── databricks/                           # Databricks notebooks
+│   ├── bronze_to_silver/                 # Data transformation notebooks
+│   ├── silver_to_gold/                   # Data aggregation notebooks 
+│   └── utilities/                        # Helper functions and utilities
+├── infrastructure/                       # IaC templates
+│   ├── arm_templates/                    # ARM templates for Azure resources
+│   └── terraform/                        # Terraform scripts (alternative)
+├── tests/                                # Test scripts and configurations
+├── docs/                                 # Additional documentation
+└── README.md                             # Project overview
 ```
 
 ---
