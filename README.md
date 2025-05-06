@@ -1,32 +1,27 @@
-# Dynamic Data Ingestion Pipeline with Azure Data Factory (ADF)
-
 ## Overview
 
-This project demonstrates a **scalable and dynamic data ingestion pipeline** using **Azure Data Factory (ADF)** to retrieve multiple datasets from GitHub repository and storing them into **Azure Data Lake** storage account.
+This project demonstrates how to build a **modular**, **scalable**, and **dynamic data ingestion pipeline** using **Azure Data Factory (ADF)** to retrieve datasets from **GitHub** and store them in **Azure Data Lake Storage Gen2**. It lays the foundation for a complete **ETL pipeline** aligned with the **Medallion Architecture**, enabling clean separation of raw, refined, and curated data layers (**Raw → Bronze → Silver → Gold**).
 
-It is designed using **parameterization** and **control flow** activities like `ForEach`, `Web Activity`, and `Set Variable`, following best practices for building **reusable, dynamic ingestion solutions**.
+The pipeline leverages **parameterization**, **Web Activity-based validation**, and **ForEach control flow** to dynamically ingest multiple files without requiring manual updates to the code or pipeline.
 
 ---
 
-## Skills Demonstrated
+## This project will cover the following 
 
-- Azure Data Factory pipelines
-- Dynamic parameterization (file name, folder name)
-- External data ingestion using HTTP GET from GitHub
-- Azure Data Lake Gen2 – configured with hierarchical namespace
-- JSON-driven ingestion logic using `ForEach`
+ 1) ### Leverage Azure Data Factory to:
+      - Create Azure Data Lake – configured with hierarchical namespace
+      - External data ingestion using HTTP connection with GitHub
+      - Dynamically ingests data from GitHub using 'ForEach' logic
+      - Validates file existence
+      - Writes files to structured folders in Azure Data LakeAzure Data Factory
 - Pipeline control using Web Activity and Set Variable
 - Modular, scalable ETL architecture based on Medallion principles (Raw → Bronze → Silver → Gold)
 
 ---
 
-## Architecture
+## 1) Azure Data Factory: Dynamic GitHub to Data Lake Ingestion Pipeline
 
-### Visual Representation
-
-# ✅ Azure Data Factory: Dynamic GitHub to Data Lake Ingestion Pipeline
-
-### 🔍 Goal:
+### Goal:
 Build a reusable pipeline that:
 - Validates file existence
 - Dynamically ingests data from GitHub
@@ -34,9 +29,9 @@ Build a reusable pipeline that:
 ![image](https://github.com/user-attachments/assets/ee6d4fa9-f49f-4f3c-86a8-cf95c8b6740e)
 ---
 
-## 🧩 Flow Diagram Components (Explained)
+## Flow Diagram Components (Explained)
 
-### 1️⃣ Web Activity – Metadata
+### Web Activity – Metadata
 - **Purpose**: Sends an HTTP **GET request** to GitHub to validate that a file exists before processing.
 - **Example URL**:
 ### Step-by-Step Flow
