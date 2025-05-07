@@ -1,6 +1,7 @@
 ##  Setup Steps
 
 ### Create Linked Services
+![image](https://github.com/user-attachments/assets/6ef0c810-0b93-4fd1-b279-d2ff55996275)
 
 #### HTTP Linked Service (GitHub)
 - Go to **Manage** tab > **Linked Services** > **+ New**
