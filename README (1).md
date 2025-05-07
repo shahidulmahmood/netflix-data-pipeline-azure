@@ -5,18 +5,6 @@ This project demonstrates how to build an end-to-end data ingestion and processi
 
 ---
 
-## Project Overview
-
-This pipeline is designed to:
-
-- Automatically ingest CSV files from a GitHub repository.
-- Store raw files in a hierarchical Azure Data Lake (Raw → Bronze → Silver → Gold).
-- Use Azure Data Factory for dynamic ingestion using parameterized pipelines.
-- Transform and stream files using Azure Databricks Autoloader.
-- Structure data using the Delta Lake format for scalable querying.
-
----
-
 ## Technologies Used
 
 - Azure Resource Group
@@ -26,78 +14,6 @@ This pipeline is designed to:
 - Delta Lake
 - Autoloader
 - GitHub (as source system)
-
----
-
-## Architecture Overview
-
-```
-├── adf/                                  # Azure Data Factory resources
-│   ├── pipelines/                        # Pipeline definitions
-│   ├── datasets/                         # Dataset definitions
-│   └── linkedServices/                   # Linked service configurations
-├── databricks/                           # Databricks notebooks
-│   ├── bronze_to_silver/                 # Data transformation notebooks
-│   ├── silver_to_gold/                   # Data aggregation notebooks 
-│   └── utilities/                        # Helper functions and utilities
-├── infrastructure/                       # IaC templates
-│   ├── arm_templates/                    # ARM templates for Azure resources
-│   └── terraform/                        # Terraform scripts (alternative)
-├── tests/                                # Test scripts and configurations
-├── docs/                                 # Additional documentation
-└── README.md                             # Project overview
-```
-
----
-
-## Step-by-Step Setup
-
-### 1. Azure Setup
-
-- Create a **Resource Group**.
-- Create a **Storage Account** with **Hierarchical Namespace** enabled.
-- Create four containers:
-  - `raw`, `bronze`, `silver`, `gold`
-
-### 2. Azure Data Factory (ADF)
-
-- Create two **Linked Services**:
-  - HTTP (GitHub): `https://raw.githubusercontent.com/`
-  - Azure Data Lake Storage Gen2 (connect to your storage account)
-
-### 3. ADF Pipeline
-
-- Create **Parameters** for folder and file names.
-- Add **Copy Data** activity with:
-  - Source: HTTP (GitHub)
-  - Sink: Azure Data Lake (Raw container)
-- Use a **ForEach** activity:
-  - Loop through an array of JSON file objects.
-  - Example:
-
-```json
-[
-  { "folder_name": "netflix_cast", "file_name": "netflix_cast.csv" },
-  { "folder_name": "netflix_category", "file_name": "netflix_category.csv" },
-  ...
-]
-```
-
-- Add a **Web Activity** (optional) to fetch metadata or validate files.
-- Set variables as needed for dynamic behavior.
-
-### 4. Azure Databricks Autoloader
-
-```python
-checkpoint_location = "abfss://silver@<your-storage>.dfs.core.windows.net/checkpoint"
-
-df = spark.readStream  .format("cloudFiles")  .option("cloudFiles.format", "csv")  .option("cloudFiles.schemaLocation", checkpoint_location)  .load("abfss://raw@<your-storage>.dfs.core.windows.net")
-
-df.writeStream  .option("checkpointLocation", checkpoint_location)  .trigger(processingTime='10 seconds')  .start("abfss://bronze@<your-storage>.dfs.core.windows.net/netflix_titles")
-```
-
-- Autoloader monitors new files and streams them into Bronze.
-- Use follow-up notebooks for transformations from Bronze → Silver → Gold using Delta format.
 
 ---
 
@@ -119,6 +35,47 @@ netflix-data-pipeline-azure/
 ```
 
 ---
+## Project Overview
+
+![image](https://github.com/user-attachments/assets/03fd84e0-7346-4277-a2ab-d4cd53df5fef)
+
+This pipeline is designed to:
+
+- Dynamically ingest CSV files from a GitHub repository.
+- Use Azure Data Factory for dynamic ingestion using parameterized pipelines.
+- Transform and stream files using Azure Databricks Autoloader.
+- Store raw files in a hierarchical Azure Data Lake (Raw → Bronze → Silver → Gold).
+- Structure data using the Delta Lake format for scalable querying.
+
+---
+
+## Architecture Explained
+
+### 1️ Ingestion Layer (Raw / Bronze)
+- **GitHub** hosts raw `.csv` files.
+- **Azure Data Factory**:
+  - Uses **Web Activity** to validate data availability
+  - Executes a **ForEach** loop over a list of files
+  - Runs **Copy Data** activities to move files to the Data Lake (`raw/` folder)
+- **Data Lake Gen2** serves as the storage Zone for the raw data.
+
+---
+
+### 2️ Transformation Layer (Silver)
+- Managed via **Databricks Notebooks** or **DLT**
+- Reads data from Raw/Bronze and:
+  - Cleans data
+  - Handles nulls
+  - Casts data types
+  - Creates new features (e.g., `ShortTitle`, `TypeFlag`)
+- Saves "silver quality" data back to Data Lake in Delta format.
+
+---
+
+### 3️ Gold Layer – Serving
+- **Delta Live Tables** create **validated** and **enriched** output tables
+- Implements quality rules using:
+  
 
 ## Key Learnings
 
@@ -135,7 +92,3 @@ netflix-data-pipeline-azure/
 A scalable Azure-based data pipeline capable of automatically ingesting, storing, and transforming data from external sources, following best practices for modern data engineering.
 
 ---
-
-## Contact
-
-Built by [Your Name]. Feel free to connect with me on [LinkedIn] or check out more of my work on [GitHub].
