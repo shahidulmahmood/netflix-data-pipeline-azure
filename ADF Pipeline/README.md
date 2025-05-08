@@ -1,18 +1,11 @@
 
-# 📥 Azure Data Factory: Dynamic File Ingestion from GitHub Using Parameters
+# Azure Data Factory: Dynamic File Ingestion from GitHub Using Parameters
 
-This project demonstrates how to use **Azure Data Factory (ADF)** to dynamically ingest multiple CSV files from a public GitHub repository into Azure Data Lake Gen2. The pipeline is parameterized and uses a `ForEach` loop to scale the ingestion process with minimal effort.
-
----
-
-## 🌐 GitHub Dataset Source
-
-Example file being ingested:
-- [`netflix_cast.csv`](https://raw.githubusercontent.com/shahidulmahmood/netflix-data-pipeline-azure/refs/heads/main/ADF%20Pipeline/netflix_cast.csv)
+This project demonstrates how to use **Azure Data Factory (ADF)** to dynamically ingest multiple CSV files from a public GitHub repository into Azure Data Lake Gen2. The pipeline is parameterized and uses a `ForEach` loop to scale the ingestion process with minimal effort. I will do a step by step guide on how this can be done.
 
 ---
 
-## ⚙️ Tools & Services
+## Tools & Services
 
 - Azure Data Factory
 - Azure Data Lake Storage Gen2
@@ -21,7 +14,7 @@ Example file being ingested:
 
 ---
 
-## 🧱 Architecture Overview
+## Architecture Overview
 
 1. Define file info in a JSON array
 2. Use ADF pipeline with parameters for file name and folder name
@@ -30,7 +23,23 @@ Example file being ingested:
 
 ---
 
-## 📁 Array Parameter (Defined in Notebook)
+## Folder Structure
+
+```
+adf-github-ingestion/
+├── adf/
+│   ├── pipelines/
+│   ├── datasets/
+│   └── linkedServices/
+├── notebooks/
+│   └── set_array_parameter.py
+├── docs/
+│   └── data-flow-diagram.png
+├── README.md
+```
+
+---
+## Array Parameter (Defined in Notebook)
 
 ```python
 files = [
@@ -47,9 +56,9 @@ dbutils.jobs.taskValues.set(key = "my_arr", value = files)
 
 ---
 
-## 🧭 Azure Data Factory UI – Step-by-Step Setup
+## Azure Data Factory UI – Step-by-Step Setup
 
-### 🔹 1. Launch ADF Studio
+### 1. Launch ADF Studio
 
 1. Go to [portal.azure.com](https://portal.azure.com)
 2. Open your **Data Factory** resource
@@ -59,9 +68,9 @@ dbutils.jobs.taskValues.set(key = "my_arr", value = files)
 
 ---
 
-### 🔹 2. Create Linked Services
+### 2. Create Linked Services
 
-#### ✅ GitHub HTTP Linked Service
+#### GitHub HTTP Linked Service
 1. Click **Manage** (gear icon in left panel)
 2. Click **Linked Services** → **+ New**
 3. Select **HTTP** from connector options
@@ -70,7 +79,7 @@ dbutils.jobs.taskValues.set(key = "my_arr", value = files)
 6. Authentication Type: `Anonymous`
 7. Click **Create**
 
-#### ✅ Azure Data Lake Gen2 Linked Service
+#### Azure Data Lake Gen2 Linked Service
 1. Click **+ New** again in Linked Services
 2. Choose **Azure Data Lake Storage Gen2**
 3. Name: `DataLake_LinkedService`
@@ -82,7 +91,7 @@ dbutils.jobs.taskValues.set(key = "my_arr", value = files)
 
 ---
 
-### 🔹 3. Define Pipeline Parameters
+### 3. Define Pipeline Parameters
 
 1. Go to **Author** tab
 2. Create a **New Pipeline**
@@ -94,9 +103,9 @@ dbutils.jobs.taskValues.set(key = "my_arr", value = files)
 
 ---
 
-### 🔹 4. Create Datasets
+### 4. Create Datasets
 
-#### ✅ HTTP Dataset (GitHub)
+#### HTTP Dataset (GitHub)
 1. Under **Author > Datasets**, click **+ New Dataset**
 2. Choose `HTTP`, then `DelimitedText`
 3. Name: `GitHubSource`
@@ -107,7 +116,7 @@ dbutils.jobs.taskValues.set(key = "my_arr", value = files)
    ```
 6. Click **OK**
 
-#### ✅ ADLS Dataset (Sink)
+#### ADLS Dataset (Sink)
 1. Click **+ New Dataset**, choose `DelimitedText` with `Azure Data Lake Gen2`
 2. Name: `DataLakeSink`
 3. Linked Service: `DataLake_LinkedService`
@@ -152,7 +161,7 @@ dbutils.jobs.taskValues.set(key = "my_arr", value = files)
 
 ---
 
-## ✅ Benefits
+## Benefits
 
 | Feature        | Benefit                                           |
 |----------------|---------------------------------------------------|
@@ -163,23 +172,6 @@ dbutils.jobs.taskValues.set(key = "my_arr", value = files)
 
 ---
 
-## 🏗️ Suggested Folder Structure
-
-```
-adf-github-ingestion/
-├── adf/
-│   ├── pipelines/
-│   ├── datasets/
-│   └── linkedServices/
-├── notebooks/
-│   └── set_array_parameter.py
-├── docs/
-│   └── data-flow-diagram.png
-├── README.md
-```
-
----
-
-## 🏁 Final Outcome
+## Final Outcome
 
 A dynamic, reusable ADF pipeline that connects GitHub to Azure Data Lake and ingests multiple files using a parameterized loop—all configured via Azure's UI.
