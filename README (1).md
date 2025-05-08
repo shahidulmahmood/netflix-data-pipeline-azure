@@ -27,8 +27,12 @@ netflix-data-pipeline-azure/
 │   ├── autoloader.py
 │   ├── silver_transform.py
 │   └── gold_transform.py
-├── datasets/
+├── Data/
 │   └── netflix_cast.csv
+│   └── netflix_category.csv
+│   └── netflix_countries.csv
+│   └── netflix_directors.csv
+│   └── netflix_titles.csv
 ├── docs/
 │   └── architecture-diagram.png
 └── README.md
