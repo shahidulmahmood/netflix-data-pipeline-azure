@@ -1,9 +1,9 @@
 # 🟤 Raw Layer – Autoloader Ingestion
 
-## 🔹 Purpose
+## Purpose
 Ingest raw CSV files from Azure Data Lake's `raw` container into the `bronze` layer using Databricks Autoloader.
 
-## 🔹 Code Summary
+## Code Summary
 ```python
 %sql
 CREATE SCHEMA netflix_catalog.net_schema;
@@ -22,7 +22,7 @@ df.writeStream \
   .start("abfss://bronze@<storage>.dfs.core.windows.net/netflix_titles")
 ```
 
-## 🔹 What It Does
+## What It Does
 - Uses Autoloader to detect new files in the `raw` container.
 - Writes data incrementally to the `bronze` container.
 - Tracks processed files using RocksDB checkpoints.
