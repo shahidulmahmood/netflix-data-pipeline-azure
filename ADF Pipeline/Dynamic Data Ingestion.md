@@ -23,23 +23,6 @@ This project demonstrates how to use **Azure Data Factory (ADF)** to dynamically
 
 ---
 
-## Folder Structure
-
-```
-adf-github-ingestion/
-├── adf/
-│   ├── pipelines/
-│   ├── datasets/
-│   └── linkedServices/
-├── notebooks/
-│   └── set_array_parameter.py
-├── docs/
-│   └── data-flow-diagram.png
-├── README.md
-```
-
----
-
 ## Azure Data Factory UI – Step-by-Step Setup
 
 ### 1. Launch ADF Studio
