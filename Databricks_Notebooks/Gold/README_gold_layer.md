@@ -9,9 +9,9 @@ This README explains how to use **Delta Live Tables (DLT)** in Azure Databricks 
 
 The **Gold Layer** serves as the **final presentation-ready layer** of your data pipeline. It ensures:
 
-- ✅ Cleaned and validated data
-- ✅ Removal of nulls or incorrect values
-- ✅ Readiness for BI tools, dashboards, and reporting
+- Cleaned and validated data
+- Removal of nulls or incorrect values
+- Readiness for BI tools, dashboards, and reporting
 
 ---
 
