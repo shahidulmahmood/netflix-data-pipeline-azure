@@ -5,7 +5,7 @@ This README explains how to use **Delta Live Tables (DLT)** in Azure Databricks 
 
 ---
 
-## 🎯 Purpose
+## Purpose
 
 The **Gold Layer** serves as the **final presentation-ready layer** of your data pipeline. It ensures:
 
@@ -15,7 +15,7 @@ The **Gold Layer** serves as the **final presentation-ready layer** of your data
 
 ---
 
-## ⚙️ Technology Used
+## Technology Used
 
 - **Azure Databricks**
 - **Delta Lake**
@@ -23,7 +23,7 @@ The **Gold Layer** serves as the **final presentation-ready layer** of your data
 
 ---
 
-## 🧱 What Is Delta Live Tables (DLT)?
+## What Is Delta Live Tables (DLT)?
 
 Delta Live Tables allows you to define pipelines using Python with special decorators like `@dlt.table`, `@dlt.view`, and `@dlt.expect`.
 
@@ -37,9 +37,9 @@ DLT automatically:
 
 ---
 
-## 🧭 Step-by-Step Implementation
+## Step-by-Step Implementation
 
-### ✅ Step 1: Ingest and Validate from Silver
+### Step 1: Ingest and Validate from Silver
 
 ```python
 @dlt.table(name = "gold_netflixcategory")
@@ -54,7 +54,7 @@ def load_category():
 
 ---
 
-### ✅ Step 2: Stage Main Titles Data
+### Step 2: Stage Main Titles Data
 
 ```python
 @dlt.table
@@ -67,7 +67,7 @@ def gold_stg_netflixtitles():
 
 ---
 
-### ✅ Step 3: Transform Data
+### Step 3: Transform Data
 
 ```python
 @dlt.view
@@ -81,7 +81,7 @@ def gold_trns_netflixtitles():
 
 ---
 
-### ✅ Step 4: Create Final Gold Table with Validations
+### Step 4: Create Final Gold Table with Validations
 
 ```python
 @dlt.table
@@ -99,7 +99,7 @@ def gold_netflixtitles():
 
 ---
 
-## ✅ Final Outcome
+## Final Outcome
 
 | Table Name            | Description                        |
 |----------------------|------------------------------------|
@@ -110,21 +110,18 @@ These tables are clean, validated, and **ready for consumption** by business use
 
 ---
 
-## 📌 Benefits
+## Benefits
 
-- 🔒 Data quality ensured
-- 🚀 Supports streaming ingestion
-- 📊 BI-ready, trusted datasets
-- 🔁 Easy to update and maintain
+- Data quality ensured
+- Supports streaming ingestion
+- BI-ready, trusted datasets
+- Easy to update and maintain
 
 ---
 
-## 🧪 Future Enhancements
+## Future Enhancements
 
 - Add more rules using `@dlt.expect` or `@dlt.expect_all_or_drop`
 - Include joins to enrich data
 - Add aggregations for KPIs
 
----
-
-Built with ❤️ using Databricks DLT
