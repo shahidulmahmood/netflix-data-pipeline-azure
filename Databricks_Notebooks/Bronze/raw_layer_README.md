@@ -12,7 +12,9 @@ Leverage **Databricks Autoloader** to:
 
 ---
 
-## Step-by-Step Guide
+## Autoloader Step by Step Guide
+
+![image](https://github.com/user-attachments/assets/43df5f5e-e57a-4d51-a255-52743f46c507)
 
 ### Step 1: Ensure HNS Is Enabled
 
