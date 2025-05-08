@@ -39,22 +39,6 @@ adf-github-ingestion/
 ```
 
 ---
-## Array Parameter (Defined in Notebook)
-
-```python
-files = [
-    { "sourcefolder": "netflix_directors", "targetfolder": "netflix_directors" },
-    { "sourcefolder": "netflix_cast", "targetfolder": "netflix_cast" },
-    { "sourcefolder": "netflix_countries", "targetfolder": "netflix_countries" },
-    { "sourcefolder": "netflix_category", "targetfolder": "netflix_category" }
-]
-
-dbutils.jobs.taskValues.set(key = "my_arr", value = files)
-```
-
-**Summary**: This defines a list of files to ingest, specifying their source and target folders. The array can be passed into the ADF pipeline using `dbutils.jobs.taskValues.set()`.
-
----
 
 ## Azure Data Factory UI – Step-by-Step Setup
 
@@ -134,6 +118,8 @@ dbutils.jobs.taskValues.set(key = "my_arr", value = files)
 
 1. Drag a **ForEach** activity into your pipeline
 2. In **Items**, paste:
+---
+
 ```json
 [
   { "file_name": "netflix_cast.csv", "targetfolder": "netflix_cast" },
@@ -142,6 +128,10 @@ dbutils.jobs.taskValues.set(key = "my_arr", value = files)
   { "file_name": "netflix_category.csv", "targetfolder": "netflix_category" }
 ]
 ```
+
+This defines a list of files to ingest, specifying their source and target folders. The array can be passed into the ADF pipeline using `dbutils.jobs.taskValues.set()`.
+
+
 3. Inside ForEach → drag a **Copy Data** activity
 4. Set **Source Dataset**: `GitHubSource`
    - File name param: `@item().file_name`
