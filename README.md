@@ -33,8 +33,6 @@ netflix-data-pipeline-azure/
 │   └── netflix_countries.csv
 │   └── netflix_directors.csv
 │   └── netflix_titles.csv
-├── docs/
-│   └── architecture-diagram.png
 └── README.md
 ```
 
