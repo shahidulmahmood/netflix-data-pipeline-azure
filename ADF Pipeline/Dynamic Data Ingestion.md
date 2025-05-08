@@ -79,7 +79,7 @@ This project demonstrates how to use **Azure Data Factory (ADF)** to dynamically
 4. Select `GitHub_LinkedService`
 5. For **Relative URL**, click the dynamic content icon and use:
    ```
-   @concat('shahidulmahmood/netflix-data-pipeline-azure/main/ADF Pipeline/', pipeline().parameters.file_name)
+   @concat('shahidulmahmood/netflix-data-pipeline-azure/main/Data/', pipeline().parameters.file_name)
    ```
 6. Click **OK**
 
