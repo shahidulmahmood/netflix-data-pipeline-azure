@@ -1,9 +1,9 @@
 # ⚪ Silver Layer – Transformation and Cleansing
 
-## 🔹 Purpose
+## Purpose
 Transform data from the Bronze layer to apply cleaning, enrichments, and data type conversions before storing in the Silver layer.
 
-## 🔹 Code Summary
+## Code Summary
 ```python
 from pyspark.sql.functions import * 
 from pyspark.sql.types import *
@@ -26,7 +26,7 @@ df.write.format("delta") \
   .save()
 ```
 
-## 🔹 What It Does
+## What It Does
 - Cleans and casts data types.
 - Adds flags and derived attributes.
 - Writes clean, queryable data to the Silver layer in Delta format.
