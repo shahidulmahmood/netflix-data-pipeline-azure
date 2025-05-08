@@ -1,7 +1,7 @@
 
 # 🟡 Gold Layer – Delta Live Tables (DLT) for Final Trusted Netflix Data
 
-This README explains how to use **Delta Live Tables (DLT)** in Azure Databricks to build the Gold Layer in a Medallion Architecture. This layer provides fully cleaned, validated, and BI-ready Netflix datasets.
+I will explain how to use **Delta Live Tables (DLT)** in Azure Databricks to build the Gold Layer in a Medallion Architecture. This layer provides fully cleaned, validated, and BI-ready Netflix datasets.
 
 ---
 
