@@ -21,8 +21,8 @@ This project demonstrates how to build an end-to-end data ingestion and processi
 
 ```
 netflix-data-pipeline-azure/
-├── adf-pipeline/
-│   └── pipeline-definition.json
+├── ADF-pipeline/
+│   └── Dynamic_Data_Ingestion.md
 ├── databricks-notebooks/
 │   ├── autoloader.py
 │   ├── silver_transform.py
