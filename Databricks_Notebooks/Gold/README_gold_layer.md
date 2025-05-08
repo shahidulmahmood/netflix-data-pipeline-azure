@@ -119,9 +119,25 @@ These tables are clean, validated, and **ready for consumption** by business use
 
 ---
 
-## Future Enhancements
+## 
+📎 Code Breakdown
 
-- Add more rules using `@dlt.expect` or `@dlt.expect_all_or_drop`
-- Include joins to enrich data
-- Add aggregations for KPIs
+### @dlt.table(name = "gold_netflixcategory")
+- **Purpose**: Creates a Gold table from `netflix_category` in the Silver layer.
+- **Validation**: Drops rows where `show_id` is null.
+
+### @dlt.table
+- **Name**: gold_stg_netflixtitles
+- **Purpose**: Loads the main `netflix_titles` data from Silver layer into a staging table for further processing.
+
+### @dlt.view
+- **Name**: gold_trns_netflixtitles
+- **Purpose**: Adds a `newflag` column to the staging data.
+- **Note**: Creates a view for transformation, not a physical table.
+
+### @dlt.table with @dlt.expect_all_or_drop
+- **Name**: gold_netflixtitles
+- **Validations**: Ensures `newflag` and `show_id` are not null.
+- **Purpose**: Final trusted table for reporting and analytics.
+
 
