@@ -97,7 +97,7 @@ This project demonstrates how to use **Azure Data Factory (ADF)** to dynamically
 
 ---
 
-### 🔹 5. Add ForEach + Copy Activities
+### 5. Add ForEach + Copy Activities
 
 1. Drag a **ForEach** activity into your pipeline
 2. In **Items**, paste:
@@ -125,7 +125,7 @@ This defines a list of files to ingest, specifying their source and target folde
 
 ---
 
-### 🔹 6. Validate and Trigger Pipeline
+### 6. Validate and Trigger Pipeline
 
 1. Click **Validate All** on the toolbar
 2. Click **Debug** to test locally OR **Add Trigger > Trigger Now**
